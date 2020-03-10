@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+
+<body>
+    <a href="#eng" data-reload>English</a>
+    <a href="#de" data-reload>Deutsch</a>
+    <button onclick="location.reload()">Go</button>
+
+    <p id="hi">
+        Hello World.
+    </p>
+
+    <script>
+        // define language reload anchors
+
+        // let dataReload = document.querySelectorAll("[data-reload]");
+        // console.log(dataReload);
+
+        // language translation
+
+        let language = {
+            eng: {
+                welcome: "Hello World"
+            },
+            de: {
+                welcome: "Hallo Welt"
+            }
+        };
+
+        // define language via window hash
+
+        if (window.location.hash) {
+            if (window.location.hash === "#de") {
+                hi.textContent = language.de.welcome;
+            } else {
+                hi.textContent = language.eng.welcome;
+            }
+        }
+
+        // define language reload onclick iteration
+
+        // for (i = 0; i <= dataReload.length; i++) {
+        //     dataReload.onclick = function () {
+        //         location.reload(true);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
