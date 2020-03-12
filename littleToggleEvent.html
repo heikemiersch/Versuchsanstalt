@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>littleToggleEvent</title>
+    <style type="text/css">
+        .black {
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button>Click me if you can</button>
+
+
+    <script>
+        let lulu = document.querySelector("button");
+
+        let isBlack = false;
+
+        lulu.addEventListener("click", function () {
+            if (isBlack) {
+                document.body.style.backgroundColor = "white"
+            } else {
+                document.body.style.backgroundColor = "black";
+            }
+            // switch between black and not black
+            isBlack = !isBlack;
+        });
+
+        // or give and remove a class
+
+        lulu.addEventListener("click", function () {
+            document.body.classList.toggle("black")
+        });
+    </script>
+</body>
+
+</html>
