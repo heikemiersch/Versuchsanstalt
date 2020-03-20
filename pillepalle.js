@@ -77,3 +77,58 @@ for (let i in levels) {
     maxPrice += price;
   }
 }
+
+// 4. es gibt nun mehrere kurse mit mehreren eingeschriebenen schülern. die schüler werden
+// pro kurs gespeichert. es gibt nun mehrdimensionale arrays.
+
+let studentsPerCourse = [
+  ["Max", "Monika"], // erster kurs
+  ["Erik", "Erika"] // zweiter kurs
+];
+
+// a) berechne die anzahl der teilnehmer aller kurse insgesamt (aber so, dass es auch mehr
+// als zwei kurse sein könnten)
+
+let num = 0;
+for (let course of studentsPerCourse) {
+  num += course.length;
+}
+console.log("4.a " + num);
+
+// b) der teilnehmer "Max" musste seinen sprachkurs absagen. schreibe ein programm,
+// das ihn aus seinem kurs entfernt (aber so, dass man es auf jeden schüler anwenden könnte).
+// mach möglich, dass der schüler eine nachricht bekommt, falls er gar nirgends eingetragen war.
+
+let studentToCancel = "Max";
+let studentFound = false;
+for (let course of studentsPerCourse) {
+  if (course.indexOf(studentToCancel) !== -1) {
+    let posStudentToCancel = course.indexOf(studentToCancel);
+    course.splice(posStudentToCancel, 1);
+    studentFound = true;
+    break;
+  }
+}
+console.log(
+  "4.b " + studentsPerCourse + " --  " + studentToCancel + " wurde entfernt"
+);
+if (studentFound === false) {
+  console.log("4.b " + studentsPerCourse + " -- kein teilnehmer entfernt");
+}
+
+// c) ein neuer teilnehmer soll eingeschrieben werden. schreibe ein programm, dass einen neuen
+// teilnehmer in dem kurs platziert, der bisher die wenigsten teilnehmer hat (und beachte auch
+// den fall, dass zwei kurse die gleiche teilnehmerzahl haben)
+
+let indexLeastStudents = -1;
+for (let i in studentsPerCourse) {
+  let course = studentsPerCourse[i];
+  if (indexLeastStudents === -1) {
+    indexLeastStudents = i;
+  } else {
+    if (course.length < studentsPerCourse[indexLeastStudents].length) {
+      indexLeastStudents = i;
+    }
+  }
+}
+console.log("4.c " + indexLeastStudents);
