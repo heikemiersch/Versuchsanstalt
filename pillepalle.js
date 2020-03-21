@@ -132,3 +132,107 @@ for (let i in studentsPerCourse) {
   }
 }
 console.log("4.c " + indexLeastStudents);
+
+// 5. die sprachschule hat herausgefunden, dass es funktionen gibt.
+
+let courses = [
+  ["Christian", "Annika"], // kurs 1 mit 2 teilnehmern
+  ["Julian", "Lisa", "Tom"] // kurs 2 mit 3 teilnehmern
+];
+
+// 1a) schreibe eine funktion, die ermittelt, welcher kurs bisher am wenigsten teilnehmer hat.
+// wenn zwei kurse gleich viele teilnehmer haben, ist es egal, welcher kurs zurückgegeben wird.
+
+function getSmallestCourse() {
+  let smallestCourse = 0;
+  let smallestIndex = -1;
+
+  for (let i in courses) {
+    let course = courses[i];
+    if (smallestIndex === -1 || course.length < smallestCourse) {
+      smallestIndex = i;
+      smallestCourse = course.length;
+    }
+  }
+  console.log("the smallest course is on index " + smallestIndex);
+  return smallestIndex;
+}
+getSmallestCourse();
+
+// 1b) schreibe eine funktion, die einen teilnehmer in den kurs einfügt, der bisher am
+// wenigsten teilnehmer hat
+
+function addStudent(name) {
+  let smallestCourse = getSmallestCourse();
+  courses[smallestCourse].push(name);
+}
+addStudent("Tim");
+console.log("student wurde eingefügt in kurs " + getSmallestCourse());
+console.log(courses);
+
+// 2. mithilfe von funktionen sollen wir ein einfaches wörterbuch entwickeln. die variablennamen für die
+// sprachbausteine sind komplett großgeschrieben, um klarzumachen, dass diese nie abgeändert werden sollen.
+// die indices stimmen überein.
+
+const LANGUAGE_DE = [
+  "hallo",
+  "heute",
+  "sprachkurs",
+  "willkommen",
+  "mikrofon",
+  "und"
+];
+
+const LANGUAGE_EN = [
+  "hello",
+  "today",
+  "language course",
+  "welcome",
+  "microphone",
+  "and"
+];
+
+// a) schreibe eine funktion, die ein einzelnes wort vom deutschen ins englische übersetzt.
+// das englische wort soll über return weitergegeben werden.
+// kann ein wort nicht übersetzt werden, soll 1:1 das deutsche wort ausgegeben werden.
+
+function translateWord(word) {
+  word = word.toLowerCase();
+
+  for (let i in LANGUAGE_DE) {
+    let currentWord = LANGUAGE_DE[i];
+
+    if (currentWord === word) {
+      return LANGUAGE_EN[i];
+    }
+  }
+  return word;
+}
+console.log("2.a ", translateWord("Sprachkurs"));
+console.log("2.a ", translateWord("Sprachschüler"));
+
+// b) schreibe eine funktion, die den ersten buchstaben eines wortes in einen großbuchstaben umewandelt.
+
+function ucFirst(word) {
+  let firstLetter = word[0];
+  let rest = word.slice(1);
+  return firstLetter.toUpperCase() + rest;
+}
+console.log("2.b ", ucFirst("Sprachkurs"));
+
+// c) schreibe nun darauf aufbauend eine funktion, die einen ganzen satz übersetzen kann.
+// zerlege dazu den satz in wörter, übersetze diese einzeln und setze den satz wieder zusammen.
+// der erste buchstabe des satzes soll ein großbuchstabe sein.
+
+function translateSentence(sentence) {
+  let words = sentence.split(" ");
+
+  let translatedWords = [];
+  for (let word of words) {
+    let translatedWord = translateWord(word);
+    translatedWords.push(translatedWord);
+  }
+  let translateSentence = translatedWords.join(" ");
+  return ucFirst(translateSentence);
+}
+console.log("2.c ", translateSentence("Hallo und willkommen beim Sprachkurs"));
