@@ -86,7 +86,7 @@ let studentsPerCourse = [
   ["Erik", "Erika"] // zweiter kurs
 ];
 
-// a) berechne die anzahl der teilnehmer aller kurse insgesamt (aber so, dass es auch mehr
+// 4.a) berechne die anzahl der teilnehmer aller kurse insgesamt (aber so, dass es auch mehr
 // als zwei kurse sein könnten)
 
 let num = 0;
@@ -95,7 +95,7 @@ for (let course of studentsPerCourse) {
 }
 console.log("4.a " + num);
 
-// b) der teilnehmer "Max" musste seinen sprachkurs absagen. schreibe ein programm,
+// 4.b) der teilnehmer "Max" musste seinen sprachkurs absagen. schreibe ein programm,
 // das ihn aus seinem kurs entfernt (aber so, dass man es auf jeden schüler anwenden könnte).
 // mach möglich, dass der schüler eine nachricht bekommt, falls er gar nirgends eingetragen war.
 
@@ -116,7 +116,7 @@ if (studentFound === false) {
   console.log("4.b " + studentsPerCourse + " -- kein teilnehmer entfernt");
 }
 
-// c) ein neuer teilnehmer soll eingeschrieben werden. schreibe ein programm, dass einen neuen
+// 4.c) ein neuer teilnehmer soll eingeschrieben werden. schreibe ein programm, dass einen neuen
 // teilnehmer in dem kurs platziert, der bisher die wenigsten teilnehmer hat (und beachte auch
 // den fall, dass zwei kurse die gleiche teilnehmerzahl haben)
 
@@ -140,7 +140,7 @@ let courses = [
   ["Julian", "Lisa", "Tom"] // kurs 2 mit 3 teilnehmern
 ];
 
-// 1a) schreibe eine funktion, die ermittelt, welcher kurs bisher am wenigsten teilnehmer hat.
+// 5.a) schreibe eine funktion, die ermittelt, welcher kurs bisher am wenigsten teilnehmer hat.
 // wenn zwei kurse gleich viele teilnehmer haben, ist es egal, welcher kurs zurückgegeben wird.
 
 function getSmallestCourse() {
@@ -159,7 +159,7 @@ function getSmallestCourse() {
 }
 getSmallestCourse();
 
-// 1b) schreibe eine funktion, die einen teilnehmer in den kurs einfügt, der bisher am
+// 5.b) schreibe eine funktion, die einen teilnehmer in den kurs einfügt, der bisher am
 // wenigsten teilnehmer hat
 
 function addStudent(name) {
@@ -170,7 +170,7 @@ addStudent("Tim");
 console.log("student wurde eingefügt in kurs " + getSmallestCourse());
 console.log(courses);
 
-// 2. mithilfe von funktionen sollen wir ein einfaches wörterbuch entwickeln. die variablennamen für die
+// 6. mithilfe von funktionen sollen wir ein einfaches wörterbuch entwickeln. die variablennamen für die
 // sprachbausteine sind komplett großgeschrieben, um klarzumachen, dass diese nie abgeändert werden sollen.
 // die indices stimmen überein.
 
@@ -192,7 +192,7 @@ const LANGUAGE_EN = [
   "and"
 ];
 
-// a) schreibe eine funktion, die ein einzelnes wort vom deutschen ins englische übersetzt.
+// 6.a) schreibe eine funktion, die ein einzelnes wort vom deutschen ins englische übersetzt.
 // das englische wort soll über return weitergegeben werden.
 // kann ein wort nicht übersetzt werden, soll 1:1 das deutsche wort ausgegeben werden.
 
@@ -211,7 +211,7 @@ function translateWord(word) {
 console.log("2.a ", translateWord("Sprachkurs"));
 console.log("2.a ", translateWord("Sprachschüler"));
 
-// b) schreibe eine funktion, die den ersten buchstaben eines wortes in einen großbuchstaben umewandelt.
+// 6.b) schreibe eine funktion, die den ersten buchstaben eines wortes in einen großbuchstaben umewandelt.
 
 function ucFirst(word) {
   let firstLetter = word[0];
@@ -220,7 +220,7 @@ function ucFirst(word) {
 }
 console.log("2.b ", ucFirst("Sprachkurs"));
 
-// c) schreibe nun darauf aufbauend eine funktion, die einen ganzen satz übersetzen kann.
+// 6.c) schreibe nun darauf aufbauend eine funktion, die einen ganzen satz übersetzen kann.
 // zerlege dazu den satz in wörter, übersetze diese einzeln und setze den satz wieder zusammen.
 // der erste buchstabe des satzes soll ein großbuchstabe sein.
 
@@ -236,3 +236,59 @@ function translateSentence(sentence) {
   return ucFirst(translateSentence);
 }
 console.log("2.c ", translateSentence("Hallo und willkommen beim Sprachkurs"));
+
+// 7. das wörterbuch soll nun in ein objekt umgewandelt werden. ziel ist eine variable "DE_TO_EN"
+// {"hallo" : "hello", "heute": "today"}.
+// schreibe also code, der die beiden variablen "LANGUAGE_DE" und "LANGUAGE_EN" zusammenführt.
+
+let DE_TO_EN = {};
+
+for (let i in LANGUAGE_DE) {
+  let wordDe = LANGUAGE_DE[i];
+  let wordEn = LANGUAGE_EN[i];
+
+  DE_TO_EN[wordDe] = wordEn;
+}
+console.log("7. ", DE_TO_EN);
+
+// 8. die teilnehmerliste für den sprachkurs wird jetzt als array geführt, das wiederum
+// ein objekt pro teilnehmer führt.
+
+let eleves = [
+  { firstname: "Max", lastname: "Mustermann", age: 21 },
+  { firstname: "Laura", lastname: "Müller", age: 25 },
+  { firstname: "Julia", lastname: "Schreiber", age: 30 },
+  { firstname: "Tim", lastname: "Tom", age: 19 }
+];
+
+// 8.a) berechne das durchschnittliche alter der teilnhemer.
+
+let sumAge = 0;
+for (let student of eleves) {
+  sumAge += student.age;
+}
+console.log("8.a ", sumAge / eleves.length);
+
+// 8.b) füge "christian schmidt" als neuen teilnehmer hinzu.
+
+eleves.push({
+  firstname: "Christian",
+  lastname: "Schmidt"
+});
+console.log("8.b ", eleves);
+
+// 8.c) funktioniert 8.a noch? wenn nicht, dann bitte fixen.
+
+let sumAge2 = 0;
+let studentsWithAge = 0;
+for (let student of eleves) {
+  if (student.age) {
+    sumAge2 += student.age;
+    studentsWithAge++;
+  }
+}
+if (studentsWithAge === 0) {
+  console.log("8.c durchschnittsalter konnte nicht berechnet werden");
+} else {
+  console.log("8.c ", sumAge2 / studentsWithAge);
+}
