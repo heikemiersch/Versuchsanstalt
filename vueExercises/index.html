@@ -11,14 +11,16 @@
 <body>
 
     <div id="app">
-        <div v-if="isTrue">
+        <input type="text" v-model="message">
+        {{ message }}
+        <!-- <div v-if="isTrue">
             {{ message }} {{ methodThatReturnsSomething() }}
         </div>
 
 
         <button v-on:click="toggleIsTrue">
             press me
-        </button>
+        </button> -->
 
     </div>
 

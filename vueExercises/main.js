@@ -5,11 +5,11 @@ const app = new Vue({
         message: "Hello Vue"
     },
     methods: {
-        toggleIsTrue: function () {
-            this.isTrue = !this.isTrue
-        },
-        methodThatReturnsSomething: function () {
-            return "Blahblah"
-        }
+        // toggleIsTrue: function () {
+        //     this.isTrue = !this.isTrue
+        // },
+        // methodThatReturnsSomething: function () {
+        //     return "Blahblah"
+        // }
     }
 });
