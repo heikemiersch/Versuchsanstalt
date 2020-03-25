@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>index</title>
 </head>
 
@@ -17,10 +18,23 @@
             {{ message }} {{ methodThatReturnsSomething() }}
         </div>
 
-
         <button v-on:click="toggleIsTrue">
             press me
         </button> -->
+        <p>{{ number }}</p>
+        <!-- <button v-on:click="number++">+1</button>
+        <button v-on:click="number--">-1</button>
+
+        or -->
+
+        <button v-on:click="add(1)">add 1</button>
+        <button v-on:click="substract(1)">substract 1</button>
+        <button v-on:dblclick="add(10)">add 10</button>
+        <button v-on:dblclick="substract(10)">substract 10</button>
+
+        <div id="canvas" v-on:mousemove="updateXY">{{ x }}, {{ y }}</div>
+
+        <input type="text" v-on:keyup.alt.enter="createAlert">
 
     </div>
 
