@@ -1,0 +1,13 @@
+* {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input {
+    width: 200px;
+}
+
+#countdown {
+    font-size: 100px;
+    color: crimson;
+}
